@@ -1,0 +1,23 @@
+<h1>請求フォーム</h1>
+
+<%= form_with(model: @loan) do |f| %>
+    <div>
+        <%= f.label :amount, '金額' %>
+        <%= f.text_field :amount %>
+    </div>
+
+    <div>
+        <%= f.label :comment, 'コメント' %>
+        <%= f.text_field :comment %>
+    </div>
+
+    <div>
+        <%= f.label :return_on, '返済して欲しい日' %>
+        <%= f.date_field :return_on %>
+    </div>
+
+    <div>
+        <%= f.submit, '請求する' %>
+    </div>
+
+<% end %>
