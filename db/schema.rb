@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_30_044654) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_31_023646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "loans", force: :cascade do |t|
+    t.bigint "lend_user_id", null: false
+    t.bigint "borrow_user_id", null: false
+    t.integer "amount", null: false
+    t.string "comment", default: ""
+    t.date "return_on", null: false
+    t.integer "approval_status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["borrow_user_id"], name: "index_loans_on_borrow_user_id"
+    t.index ["lend_user_id"], name: "index_loans_on_lend_user_id"
+  end
+
+  create_table "repayments", force: :cascade do |t|
+    t.bigint "loan_id", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_repayments_on_loan_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_30_044654) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "loans", "users", column: "borrow_user_id"
+  add_foreign_key "loans", "users", column: "lend_user_id"
+  add_foreign_key "repayments", "loans"
 end
