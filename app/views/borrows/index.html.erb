@@ -1,27 +1,22 @@
-<table>
-  <thead>
-    <tr>
-      <th>借りた人</th>
-      <th>金額</th>
-      <th>返済予定日</th>
-      <th>コメント</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @borrows.each do |loan| %>
-      <tr>
-        <td><%= loan.lend_user.name %></td>
-        <td><%= loan.amount %></td>
-        <td><%= loan.return_on %></td>
-        <td><%= loan.comment %></td>
-        <td>
-          <%= link_to '詳細', borrow_path(loan) %>
-          <%= link_to '新しく借りる', new_borrow_path %>
-        
-        </td>
-      </tr>
+<div class="flex flex-col w-full">
+  <div class="flex justify-end">
+    <%= link_to '新しく借りる', new_borrow_path, class: "text-center w-1/12 bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full"  %>
+  </div>
+    <% if @borrows.any? %>
+    <div>
+        <h1 class="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">借り一覧 <%= @borrows.count %>件</h1>
+    </div>
+    <div class="bg-neutral-100 w-full mx-auto rounded-xl grid grid-cols-3 gap-5 p-7">
+        <% @borrows.each do |borrow| %>
+        <div class="bg-white rounded-xl border">
+            <div class=""><%= borrow.borrow_user.name %></div>
+            <div class="">返却残高:<%= borrow.amount %>円</div>
+            <div class="">コメント: <%= borrow.comment %></div>
+            <div class="">返却期限: <%= borrow.return_on %></div>
+            <%= link_to '詳細', borrow_path(borrow), class: "bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full" %>
+         </div>
+        <% end %>
+    </div>
     <% end %>
-  </tbody>
-</table>
+</div>
 
