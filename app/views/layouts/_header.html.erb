@@ -5,8 +5,8 @@
     </div>
     <% if user_signed_in? %>
     <div class="flex lg:gap-x-12">
-        <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "貸し一覧", root_path %></p>
-        <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "借り一覧", root_path %></p>
+        <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "貸し一覧", lends_path %></p>
+        <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "借り一覧", borrows_path %></p>
     </div>
     <div class="flex lg:flex-1 lg:justify-end">
       <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %><span aria-hidden="true">&rarr;</span></p>
