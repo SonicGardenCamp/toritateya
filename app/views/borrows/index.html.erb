@@ -1,4 +1,27 @@
-<div>
-  <h1 class="font-bold text-4xl">Borrows#index</h1>
-  <p>Find me in app/views/borrows/index.html.erb</p>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>借りた人</th>
+      <th>金額</th>
+      <th>返済予定日</th>
+      <th>コメント</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @borrows.each do |loan| %>
+      <tr>
+        <td><%= loan.lend_user.name %></td>
+        <td><%= loan.amount %></td>
+        <td><%= loan.return_on %></td>
+        <td><%= loan.comment %></td>
+        <td>
+          <%= link_to '詳細', borrow_path(loan) %>
+          <%= link_to '新しく借りる', new_borrow_path %>
+        
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
