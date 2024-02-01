@@ -1,32 +1,32 @@
 <h1 class="text-2xl font-bold mb-4">貸し手の請求フォーム</h1>
 
-<%= form_with(url: lends_path, class: "max-w-md mx-auto") do |f| %>
+<%= form_with(model: @loan, url: lends_path, class: "max-w-md mx-auto") do |f| %>
 
   <div class="mb-4">
-    <%= f.label :borrow_user, "貸した人", class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.collection_select :borrow_user, @users, :id, :email, { prompt: '選択してください' }, class: "form-input mt-1 block w-full" %>
+    <%= f.label :email, "貸した人", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= f.email_field :email, required: true, class: "form-input mt-1 block w-full" %>
   </div>
 
   <div class="mb-4">
     <%= f.label :amount, '金額', class: "block text-gray-700 text-sm font-bold mb-2" %>
     <div class="flex">
-      <%= f.text_field :amount, class: "form-input mt-1 block w-2/3" %>
+      <%= f.number_field :amount, min: 1, max: 1000000, required: true, class: "form-input mt-1 block w-2/3" %>
       <span class="ml-2 mt-2 text-gray-600">円</span>
     </div>
   </div>
 
   <div class="mb-4">
     <%= f.label :comment, 'コメント', class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.text_field :comment, class: "form-input mt-1 block w-full" %>
+    <%= f.text_field :comment, maxlength: 15, class: "form-input mt-1 block w-full" %>
   </div>
 
   <div class="mb-4">
     <%= f.label :return_on, '返済して欲しい日', class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.date_field :return_on, class: "form-input mt-1 block w-full" %>
+    <%= f.date_field :return_on, min: Time.zone.now, required: true, class: "form-input mt-1 block w-full" %>
   </div>
 
   <div>
-    <%= f.submit '請求する'%>
+    <%= f.submit '請求する' %>
   </div>
 
 <% end %>

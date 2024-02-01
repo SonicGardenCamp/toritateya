@@ -4,11 +4,17 @@ class LendsController < ApplicationController
 
   def new
     @loan = Loan.new
-    @users = User.all
   end
 
   def create
-    redirect_to root_path
+    user = User.find_by(email: params[:email].downcase)
+    if user
+      logger.debug("if文の中に入りました")
+      @loan = Loan.new(lend_user: , borrow_user: , amount: , comment: ,return_on: )
+    else
+      logger.debug("else文の中に入りました")
+      render 'new', status: :unprocessable_entity
+    end
   end
 
   def edit
