@@ -1,0 +1,12 @@
+<h1>返済一覧</h1>
+<table>
+  <% @borrow.repayments.each do |repayment| %>
+    <tr>
+      <td><%= repayment.amount %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to '返済する', new_borrow_repayment_path(@borrow), class: 'btn btn-primary' %>
+
+<%= link_to '戻る', borrows_path %>
