@@ -11,6 +11,7 @@ class LendsController < ApplicationController
     if user
       logger.debug("if文の中に入りました")
       @loan = Loan.new(lend_user: , borrow_user: , amount: , comment: ,return_on: )
+      
     else
       logger.debug("else文の中に入りました")
       render 'new', status: :unprocessable_entity
