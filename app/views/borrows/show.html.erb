@@ -20,14 +20,16 @@
     </div>
     <div class="col-span-2">
       <div>
-      <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600 dark:text-white">返済履歴 <%= @repayments.count %>件</h1>
+      <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600 dark:text-white">返済履歴 <%= @borrow.repayments.count %>件</h1>
       </div>
       <% if !@borrow.nil? %>
       <div class="border border-2 border-emerald-600 bg-neutral-100 w-full mx-auto rounded-xl grid gap-y-3 p-7">
-          <% @borrow.repayments.each do |repayment| %>
+          <% @repayments.each do |repayment| %>
           <div class="bg-white rounded-xl border">
             <div class="">返済額 <%= repayment.amount %>円</div>
             <div class="">返却日: <%= l repayment.created_at %></div>
+            <%= link_to "編集", edit_borrow_repayment_path(repayment.loan_id, repayment), class: "bg-blue-500 text-white px-2 py-1 rounded-md" %>
+            <%= link_to "削除", borrow_repayment_path(repayment.loan_id, repayment),method: :delete, data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "bg-red-500 text-white px-2 py-1 rounded-md" %>
           </div>
           <% end %>
       </div>
