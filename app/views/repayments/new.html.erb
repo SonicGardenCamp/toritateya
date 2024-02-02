@@ -1,5 +1,5 @@
 <h1>新規返済</h1>
-<%= form_with(model: [@borrow, @repayment], local: true) do |form| %>
+<%= form_with(model: [@borrow, @repayment],url: borrow_repayments_path(@borrow), local: true) do |form| %>
   <div class="field">
     <%= form.label :amount %>
     <%= form.number_field :amount %>
