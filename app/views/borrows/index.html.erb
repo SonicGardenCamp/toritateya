@@ -9,10 +9,10 @@
     <div class="bg-neutral-100 w-full mx-auto rounded-xl grid grid-cols-3 gap-5 p-7">
         <% @borrows.each do |borrow| %>
         <div class="bg-white rounded-xl border">
-            <div class=""><%= borrow.borrow_user.name %></div>
-            <div class="">返却残高:<%= borrow.amount %>円</div>
+            <div class="">返済者: <%= borrow.lend_user.name %></div>
+            <div class="">返却残高: <%= borrow.amount %>円</div>
             <div class="">コメント: <%= borrow.comment %></div>
-            <div class="">返却期限: <%= borrow.return_on %></div>
+            <div class="">返却期限: <%= l borrow.return_on %></div>
             <%= link_to '詳細', borrow_path(borrow), class: "bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full" %>
          </div>
         <% end %>
