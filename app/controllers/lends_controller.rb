@@ -1,4 +1,6 @@
 class LendsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @lends = current_user.lent_loans
   end
