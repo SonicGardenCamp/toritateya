@@ -1,12 +1,38 @@
-<h1>返済一覧</h1>
-<table>
-  <% @borrow.repayments.each do |repayment| %>
-    <tr>
-      <td><%= repayment.amount %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="flex flex-col w-full">
+  <div class="flex justify-between">
+      <p class="text-sm font-semibold leading-6 text-gray-900"><span aria-hidden="true">&larr;</span><%= link_to "借り一覧へ", borrows_path %></p>
+      <p><%= link_to '返済する', new_borrow_repayment_path(@borrow), class: 'text-center w-1/12 bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full' %></p>
+  </div>
+  <div>
+    <h1 class="text-center mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 dark:text-white">返済評細</h1>
+  </div>
+  <div class="grid grid-cols-3 gap-1">
+    <div class="col-span-1">
+      <div>
+        <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600">返済内容</h1>
+      </div>
+      <div class="w-5/12 mx-auto flex-col justify-center bg-white rounded-xl border border-2 border-emerald-600 bg-neutral-100">
+              <div class="">返済者 <%= @borrow.lend_user.name %></div>
+              <div class="">返却残高: <%= @borrow.amount %>円</div>
+              <div class="">コメント: <%= @borrow.comment %></div>
+              <div class="">返却期限: <%= l @borrow.return_on %></div>
+      </div>
+    </div>
+    <div class="col-span-2">
+      <div>
+      <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600 dark:text-white">返済履歴 <%= @repayments.count %>件</h1>
+      </div>
+      <% if !@borrow.nil? %>
+      <div class="border border-2 border-emerald-600 bg-neutral-100 w-full mx-auto rounded-xl grid gap-y-3 p-7">
+          <% @borrow.repayments.each do |repayment| %>
+          <div class="bg-white rounded-xl border">
+            <div class="">返済額 <%= repayment.amount %>円</div>
+            <div class="">返却日: <%= l repayment.created_at %></div>
+          </div>
+          <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<%= link_to '返済', new_borrow_repayment_path(@borrow), class: 'btn btn-primary' %>
-<%= link_to '編集', edit_borrow_repayment_path(@borrow), class: 'btn btn-primary' %>
-<%= link_to '戻る', borrows_path %>
