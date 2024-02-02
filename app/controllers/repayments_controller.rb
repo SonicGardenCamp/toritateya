@@ -15,9 +15,22 @@ class RepaymentsController < ApplicationController
   end
 
   def edit
+    @borrow = Loan.find(params[:borrow_id]) 
+    @repayment = @borrow.repayments.find(params[:id])
   end
 
   def update
+    @borrow = Loan.find(params[:borrow_id]) 
+    @repayment = @borrow.repayments.find(params[:id])
+    @repayment.update(repayment_params)
+    redirect_to borrow_path(@borrow)
+  end
+
+  def destroy
+    @borrow = Loan.find(params[:borrow_id]) 
+    @repayment = @borrow.repayments.find(params[:id])
+    @repayment.destroy
+    redirect_to borrow_path(@borrow)
   end
 
 

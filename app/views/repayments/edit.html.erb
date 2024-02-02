@@ -1,0 +1,9 @@
+<h1>返済編集</h1>
+<%= form_with(model: [@borrow, @repayment],url:borrow_repayment_path(@borrow), local: true) do |form| %>
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.number_field :amount %>
+  </div>
+  <%= form.submit "返済する" %>
+<% end %>
+  <%= link_to '戻る', borrow_path %>

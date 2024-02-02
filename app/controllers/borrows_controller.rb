@@ -12,6 +12,7 @@ class BorrowsController < ApplicationController
 
   def show
     @borrow = current_user.borrowed_loans.find(params[:id])
+    @repayments = @borrow.repayments.order(created_at: :asc)
   end
 
   def edit
