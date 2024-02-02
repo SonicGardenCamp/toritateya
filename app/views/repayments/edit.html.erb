@@ -1,9 +1,15 @@
-<h1>返済編集</h1>
-<%= form_with(model: [@borrow, @repayment],url:borrow_repayment_path(@borrow), local: true) do |form| %>
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.number_field :amount %>
+<div class="flex flex-col w-full">
+  <div class="flex justify-between">
+      <p class="text-sm font-semibold leading-6 text-gray-900"><span aria-hidden="true">&larr;</span><%= link_to "借り評細に戻る", borrow_path(@borrow) %></p>
   </div>
-  <%= form.submit "返済する" %>
-<% end %>
-  <%= link_to '戻る', borrow_path %>
+  <div>
+    <h1 class="text-center mb-4 text-4xl font-bold leading-none tracking-tight text-emerald-600">返済編集</h1>
+  </div>
+  <%= form_with(model: [@borrow, @repayment],url: borrow_repayment_path(@borrow), local: true, class: "mx-auto") do |form| %>
+      <%= form.label :amount, "返済金額", class: "block text-md font-medium leading-6 text-emerald-600" %>
+      <div class="my-2 rounded-md shadow-sm">
+        <%= form.number_field :amount, required: true, class: "block rounded-md border-0 p-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600" %>
+      </div>
+    <%= form.submit "返済する", class: "text-white !bg-emerald-600 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-6/12 px-5 py-2.5 text-center" %>
+  <% end %>
+</div>
