@@ -6,10 +6,10 @@
     <div class="bg-neutral-100 w-full mx-auto rounded-xl grid grid-cols-3 gap-5 p-7">
         <% @lends.each do |lend| %>
         <div class="bg-white rounded-xl border">
-            <div class=""><%= lend.lend_user.name %></div>
+            <div class="">借入者: <%= lend.borrow_user.name %></div>
             <div class="">返却残高:<%= lend.amount %>円</div>
             <div class="">コメント: <%= lend.comment %></div>
-            <div class="">返却期限: <%= lend.return_on %></div>
+            <div class="">返却期限: <%= l lend.return_on %></div>
             <%= link_to "編集", "#", class: "bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full" %>
             <%= link_to lend_path(lend.id), method: :delete, data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "bg-rose-300 hover:bg-rose-400 text-white font-bold py-1 px-2 rounded-full" do %>
                 <span class="disabled:hidden">削除</span>
