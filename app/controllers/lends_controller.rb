@@ -29,9 +29,18 @@ class LendsController < ApplicationController
   end
 
   def edit
+    @loan = Loan.find(params[:id])
   end
 
   def update
+    @loan = Loan.find(params[:id])
+    if @loan.update(amount: params[:loan][:amount], comment: params[:loan][:comment], return_on: params[:loan][:return_on])
+      logger.debug("if文の中に入りました")
+      redirect_to lends_path
+    else
+      logger.debug("else文の中に入りました")
+      render 'edit', status: :unprocessable_entity
+    end
   end
 
   def destroy
