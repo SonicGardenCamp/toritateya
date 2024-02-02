@@ -2,7 +2,13 @@ class LendsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @lends = current_user.lent_loans
+    lends = current_user.lent_loans
+    @lendInfos = []
+    if lends.any?
+      lends.each do |lend|
+        @lendInfos.push({"lend" =>lend,"balance" =>calcurateBalance(lend)})
+      end
+    end
   end
 
   def new

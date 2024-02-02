@@ -13,7 +13,8 @@
       </div>
       <div class="w-5/12 mx-auto flex-col justify-center bg-white rounded-xl border border-2 border-emerald-600 bg-neutral-100">
               <div class="">返済者 <%= @borrow.lend_user.name %></div>
-              <div class="">返却残高: <%= @borrow.amount %>円</div>
+              <div class="">借入金額:<%= @borrow.amount %>円</div>
+              <div class="">返却残高: <%= @repaymentBalance %>円</div>
               <div class="">コメント: <%= @borrow.comment %></div>
               <div class="">返却期限: <%= l @borrow.return_on %></div>
       </div>

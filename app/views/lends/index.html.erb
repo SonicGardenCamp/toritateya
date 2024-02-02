@@ -2,19 +2,20 @@
     <div class="flex justify-end">
         <%= link_to '新しく借す', new_lend_path, class: "text-center w-1/12 bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full"  %>
     </div>
-    <% if @lends.any? %>
+    <% if !@lendInfos.empty? %>
     <div>
-        <h1 class="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">貸し一覧 <%= @lends.count %>件</h1>
+        <h1 class="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">貸し一覧 <%= @lendInfos.count %>件</h1>
     </div>
     <div class="bg-neutral-100 w-full mx-auto rounded-xl grid grid-cols-3 gap-5 p-7">
-        <% @lends.each do |lend| %>
+        <% @lendInfos.each do |lendInfo| %>
         <div class="bg-white rounded-xl border">
-            <div class="">借入者: <%= lend.borrow_user.name %></div>
-            <div class="">返却残高:<%= lend.amount %>円</div>
-            <div class="">コメント: <%= lend.comment %></div>
-            <div class="">返却期限: <%= l lend.return_on %></div>
-            <%= link_to "編集", edit_lend_path(lend.id), class: "bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full" %>
-            <%= link_to lend_path(lend.id), method: :delete, data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "bg-rose-300 hover:bg-rose-400 text-white font-bold py-1 px-2 rounded-full" do %>
+            <div class="">借入者: <%= lendInfo["lend"].borrow_user.name %></div>
+            <div class="">貸付金額:<%= lendInfo["lend"].amount %>円</div>
+            <div class="">返却残高:<%= lendInfo["balance"] %>円</div>
+            <div class="">コメント: <%= lendInfo["lend"].comment %></div>
+            <div class="">返却期限: <%= l lendInfo["lend"].return_on %></div>
+            <%= link_to "編集", edit_lend_path(lendInfo["lend"]), class: "bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full" %>
+            <%= link_to lend_path(lendInfo["lend"]), method: :delete, data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "bg-rose-300 hover:bg-rose-400 text-white font-bold py-1 px-2 rounded-full" do %>
                 <span class="disabled:hidden">削除</span>
             <% end %>
          </div>
