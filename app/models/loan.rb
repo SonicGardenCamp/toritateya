@@ -3,6 +3,6 @@ class Loan < ApplicationRecord
   belongs_to :borrow_user, class_name: "User"
   has_many :repayments, dependent: :destroy
 
-  validates :amount, presence: true
+  validates :amount, presence: true, length: { maximum: 7 }
   validates :return_on, presence: true
 end

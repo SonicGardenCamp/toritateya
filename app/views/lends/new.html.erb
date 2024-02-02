@@ -4,11 +4,11 @@
 <%= render 'shared/error_messages', object: f.object %>
 <div class="mb-4">
     <%= f.label :email, "貸した人", class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.email_field :email, required: true, maxlength: 20, class: "form-input mt-1 block w-full" %>
+    <%= f.email_field :email, required: true, maxlength: 50, class: "form-input mt-1 block w-full" %>
   </div>
 
   <div class="mb-4">
-    <%= f.label , :amount'金額', class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= f.label :amount, '金額', class: "block text-gray-700 text-sm font-bold mb-2" %>
     <div class="flex">
       <%= f.number_field :amount, min: 1, max: 1000000, required: true, class: "form-input mt-1 block w-2/3" %>
       <span class="ml-2 mt-2 text-gray-600">円</span>
@@ -17,7 +17,7 @@
 
   <div class="mb-4">
     <%= f.label :comment, 'コメント', class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.text_field :comment, maxlength: 15, class: "form-input mt-1 block w-full" %>
+    <%= f.text_field :comment, maxlength: 50, class: "form-input mt-1 block w-full" %>
   </div>
 
   <div class="mb-4">
