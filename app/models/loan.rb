@@ -9,4 +9,9 @@ class Loan < ApplicationRecord
   def overdue?
     return_on < Date.today
   end
+
+  def due_within_three_days?
+   (return_on - Date.today).to_i < 3
+  end
+ 
 end
