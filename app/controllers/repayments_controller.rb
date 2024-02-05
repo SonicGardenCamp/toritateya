@@ -1,4 +1,6 @@
 class RepaymentsController < ApplicationController
+  before_action :correct_borrow_user_repayment, only: [:new, :create, :edit, :update]
+
   def new
     @borrow = Loan.find(params[:borrow_id])
     @repayment = Repayment.new
@@ -33,13 +35,9 @@ class RepaymentsController < ApplicationController
     redirect_to borrow_path(@borrow)
   end
 
-
   private
 
   def repayment_params
     params.require(:repayment).permit(:amount, :loan_id)
   end
-
-
 end
-
