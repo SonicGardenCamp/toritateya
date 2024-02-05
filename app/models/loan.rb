@@ -5,4 +5,8 @@ class Loan < ApplicationRecord
 
   validates :amount, presence: true, length: { maximum: 7 }
   validates :return_on, presence: true
+
+  def overdue?
+    return_on < Date.today
+  end
 end
