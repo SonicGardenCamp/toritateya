@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:top]
 
   private
-    
+  
   def calcurateBalance(loan)
     balance = loan.amount
     loan.repayments.each do |repayment|

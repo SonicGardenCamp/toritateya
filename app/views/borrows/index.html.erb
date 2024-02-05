@@ -11,10 +11,23 @@
         <div class="bg-white rounded-xl border">
             <div class="">返済者: <%= borrowInfo["borrow"].lend_user.name %></div>
             <div class="">借入金額: <%= borrowInfo["borrow"].amount %>円</div>
+            <% if borrowInfo["balance"] > 0 %>
             <div class="">返済残高: <%= borrowInfo["balance"] %>円</div>
+            <% else %>
+            <div>
+              <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">返済完了</span>
+            </div>
+            <% end %>
             <div class="">コメント: <%= borrowInfo["borrow"].comment %></div>
             <div class="">返却期限: <%= l borrowInfo["borrow"].return_on %></div>
             <%= link_to '詳細', borrow_path(borrowInfo["borrow"]), class: "bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full" %>
+            <% if borrowInfo["borrow"].overdue? &&  borrowInfo["balance"] != 0 %>
+               <%= image_tag "tiger.png", alt: "怖いトラ" %>
+               <%= "噛み殺すぞ" %>
+            <% else %>
+               <%= image_tag "cat.png", alt: "かわいい猫" %>
+               <%= "返してにゃ~" %>
+            <% end %>
          </div>
         <% end %>
     </div>
