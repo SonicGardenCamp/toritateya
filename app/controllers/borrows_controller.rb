@@ -1,5 +1,7 @@
 class BorrowsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :correct_borrow_user, only: [:show]
+
+
   def index
     borrows = current_user.borrowed_loans
     @borrowInfos = []
