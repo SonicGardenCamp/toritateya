@@ -12,6 +12,11 @@
     <div class="col-span-1">
       <div>
         <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600">返済内容</h1>
+        <% if @borrow.overdue? %>
+           <%= image_tag "tiger.png", alt: "怖いトラ" %>
+        <% else %>
+           <%= image_tag "cat.png", alt: "かわいい猫" %>
+        <% end %>
       </div>
       <div class="w-5/12 mx-auto flex-col justify-center bg-white rounded-xl border border-2 border-emerald-600 bg-neutral-100">
               <div class="">返済者 <%= @borrow.lend_user.name %></div>

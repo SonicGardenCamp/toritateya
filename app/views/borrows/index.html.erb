@@ -21,6 +21,13 @@
             <div class="">コメント: <%= borrowInfo["borrow"].comment %></div>
             <div class="">返却期限: <%= l borrowInfo["borrow"].return_on %></div>
             <%= link_to '詳細', borrow_path(borrowInfo["borrow"]), class: "bg-teal-300 hover:bg-teal-400 text-white font-bold py-1 px-2 rounded-full" %>
+            <% if borrowInfo["borrow"].overdue? &&  borrowInfo["balance"] == 0 %>
+               <%= image_tag "tiger.png", alt: "怖いトラ" %>
+               <%= "噛み殺すぞ" %>
+            <% else %>
+               <%= image_tag "cat.png", alt: "かわいい猫" %>
+               <%= "返してにゃ~" %>
+            <% end %>
          </div>
         <% end %>
     </div>
