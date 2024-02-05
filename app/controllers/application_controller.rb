@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-    private
     
     def calcurateBalance(loan)
      balance = loan.amount
@@ -7,5 +6,5 @@ class ApplicationController < ActionController::Base
        balance -= repayment.amount
      end
      return balance
-   end
+    end
 end

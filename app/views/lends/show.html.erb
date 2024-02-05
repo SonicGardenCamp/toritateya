@@ -1,0 +1,43 @@
+<div class="flex flex-col w-full">
+  <div class="flex justify-between">
+      <p class="text-sm font-semibold leading-6 text-gray-900"><span aria-hidden="true">&larr;</span><%= link_to "貸し一覧へ", lends_path %></p>
+  </div>
+  <div>
+    <h1 class="text-center mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 dark:text-white">貸付評細</h1>
+  </div>
+  <div class="grid grid-cols-3 gap-1">
+    <div class="col-span-1">
+      <div>
+        <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600">貸付内容</h1>
+      </div>
+      <div class="w-5/12 mx-auto flex-col justify-center bg-white rounded-xl border border-2 border-emerald-600 bg-neutral-100">
+              <div class="">借入者 <%= @lend.borrow_user.name %></div>
+              <div class="">貸付金額:<%= @lend.amount %>円</div>
+              <% if @repaymentBalance > 0 %>
+              <div class="">返済残高: <%= @repaymentBalance %>円</div>
+              <% else %>
+              <div>
+                <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">返済完了</span>
+              </div>
+              <% end %>
+              <div class="">コメント: <%= @lend.comment %></div>
+              <div class="">返却期限: <%= l @lend.return_on %></div>
+      </div>
+    </div>
+    <div class="col-span-2">
+      <div>
+      <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600 dark:text-white">返済履歴 <%= @lend.repayments.count %>件</h1>
+      </div>
+      <% if !@lend.nil? %>
+      <div class="border border-2 border-emerald-600 bg-neutral-100 w-full mx-auto rounded-xl grid gap-y-3 p-7">
+          <% @repayments.each do |repayment| %>
+          <div class="bg-white rounded-xl border">
+            <div class="">返済額 <%= repayment.amount %>円</div>
+            <div class="">返却日: <%= l repayment.created_at %></div>
+          </div>
+          <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ class LendsController < ApplicationController
     @lendInfos = []
     if lends.any?
       lends.each do |lend|
-        @lendInfos.push({"lend" =>lend,"balance" =>calcurateBalance(lend)})
+        @lendInfos.push({"lend" => lend,"balance" => calcurateBalance(lend)})
       end
     end
   end
@@ -21,7 +21,7 @@ class LendsController < ApplicationController
       logger.debug("if文の中に入りました")
       @loan = Loan.new(lend_user: current_user, borrow_user: user, amount: params[:loan][:amount], comment: params[:loan][:comment], return_on: params[:loan][:return_on])
       logger.debug(@loan.inspect)
-      if @loan.save 
+      if @loan.save
         logger.debug("保存処理実行")
         logger.debug(@loan.inspect)
         redirect_to lends_path
@@ -32,6 +32,12 @@ class LendsController < ApplicationController
       logger.debug("else文の中に入りました")
       render 'new', status: :unprocessable_entity
     end
+  end
+  
+  def show
+    @lend = current_user.lent_loans.find(params[:id])
+    @repayments = @lend.repayments.order(created_at: :asc)
+    @repaymentBalance = calcurateBalance(@lend)
   end
 
   def edit
