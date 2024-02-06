@@ -31,10 +31,12 @@
       <% if !@lend.nil? %>
       <div class="border border-2 border-emerald-600 bg-neutral-100 w-full mx-auto rounded-xl grid gap-y-3 p-7">
           <% @repayments.each do |repayment| %>
-          <div class="bg-white rounded-xl border">
-            <div class="">返済額 <%= repayment.amount %>円</div>
-            <div class="">返却日: <%= l repayment.created_at %></div>
-          </div>
+            <% if repayment.approval_status == 1 %>
+            <div class="bg-white rounded-xl border">
+              <div class="">返済額 <%= repayment.amount %>円</div>
+              <div class="">返却日: <%= l repayment.created_at %></div>
+            </div>
+            <% end %>
           <% end %>
       </div>
       <% end %>
