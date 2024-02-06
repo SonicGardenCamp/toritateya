@@ -1,5 +1,5 @@
 class LendsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :correct_lend_user, only: [:show, :edit, :update]
   
   def index
     lends = current_user.lent_loans
