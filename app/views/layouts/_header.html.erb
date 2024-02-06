@@ -1,7 +1,7 @@
 <header class="bg-teal-400">
   <nav class="mx-auto flex max-w-7xl items-center justify-center p-6 lg:px-8">
     <div class="flex lg:flex-1">
-        toritateya
+      <p class="text-xl font-semibold leading-6 text-emerald-900"><%= link_to "Toritateya", root_path %></p>
     </div>
     <% if user_signed_in? %>
     <div class="flex lg:gap-x-12">
@@ -12,8 +12,9 @@
       <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %><span aria-hidden="true">&rarr;</span></p>
     </div>
     <% else %>
-    <div class="flex lg:flex-1 lg:justify-end">
-      <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "Log in", new_user_session_path %><span aria-hidden="true">&rarr;</span></p>
+    <div class="flex lg:flex-1 lg:justify-end gap-x-2">
+      <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "Log in", new_user_session_path %></p>
+      <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "Sign up", new_user_registration_path %></p>
     </div>
     <% end %>
   </nav>
