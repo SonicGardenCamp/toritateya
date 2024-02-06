@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     resources :repayments, only: [:new, :create, :edit, :update, :destroy]
   end
   resources :lends
+  get "lends/approval/:id", to: "lends#approval", as: "lend_approval"
 end

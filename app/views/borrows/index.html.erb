@@ -8,7 +8,8 @@
     </div>
     <div class="bg-neutral-100 w-full mx-auto rounded-xl grid grid-cols-3 gap-5 p-7">
         <% @borrowInfos.each do |borrowInfo| %>
-        <div class="bg-white rounded-xl border">
+         <% if borrowInfo["borrow"].approval_status == 1 %>
+         <div class="bg-white rounded-xl border">
             <div class="">返済者: <%= borrowInfo["borrow"].lend_user.name %></div>
             <div class="">借入金額: <%= borrowInfo["borrow"].amount %>円</div>
             <% if borrowInfo["balance"] > 0 %>
@@ -32,6 +33,7 @@
             <% end %>
          </div>
         <% end %>
+       <% end %>
     </div>
     <% end %>
 </div>
