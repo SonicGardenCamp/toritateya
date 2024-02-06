@@ -62,6 +62,19 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "toritateya_production"
 
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'https://toritateya.fly.dev/'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :port           => 587,
+    :address        => 'smtp.mailgun.org',
+    :user_name      => 'postmaster@sandbox0e28a736c9b6417dab781f18b8e85cc9.mailgun.org',
+    :password       => 'a7c96ad66d6c6e5e4eb8da7ec75728a3-1900dca6-83c7acfc',
+    :domain         => host,
+    :authentication => :plain,
+  }
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.

@@ -24,7 +24,7 @@ class LendsController < ApplicationController
       if @loan.save
         logger.debug("保存処理実行")
         logger.debug(@loan.inspect)
-        LendUserMailer.with(user: user, loan: @loan.id).lend_user_email.deliver_later
+        LendUserMailer.with(user: user, loan: @loan).lend_user_email.deliver_later
         redirect_to lends_path
       else
         render 'new', status: :unprocessable_entity
