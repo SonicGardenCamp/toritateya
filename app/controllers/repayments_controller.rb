@@ -9,7 +9,7 @@ class RepaymentsController < ApplicationController
 
   def create
     @borrow = Loan.find(params[:borrow_id])
-    user = User.find(@borrow.lend_user)
+    user = User.find(@borrow.lend_user.id)
     @repaymentBalance = calcurateBalance(@borrow)
     @repayment = @borrow.repayments.new(repayment_params)
     if @repaymentBalance < repayment_params[:amount].to_i
