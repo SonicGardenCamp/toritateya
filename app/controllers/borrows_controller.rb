@@ -7,7 +7,7 @@ class BorrowsController < ApplicationController
     @borrowInfos = []
     if borrows.any?
       borrows.each do |borrow|
-        @borrowInfos.push({"borrow" =>borrow,"balance" =>calcurateBalance(borrow)})
+        @borrowInfos.push({"borrow" =>borrow,"balance" =>calcurateApprovalBalance(borrow)})
       end
     end
   end
@@ -22,6 +22,7 @@ class BorrowsController < ApplicationController
     @borrow = current_user.borrowed_loans.find(params[:id])
     @repayments = @borrow.repayments.order(created_at: :asc)
     @repaymentBalance = calcurateBalance(@borrow)
+    @repaymentApprovalBalance = calcurateApprovalBalance(@borrow)
   end
 
   def edit

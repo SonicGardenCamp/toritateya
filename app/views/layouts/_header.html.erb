@@ -9,12 +9,12 @@
         <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "借り一覧", borrows_path %></p>
     </div>
     <div class="flex lg:flex-1 lg:justify-end">
-      <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %><span aria-hidden="true">&rarr;</span></p>
+      <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %><span aria-hidden="true">&rarr;</span></p>
     </div>
     <% else %>
     <div class="flex lg:flex-1 lg:justify-end gap-x-2">
-      <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "Log in", new_user_session_path %></p>
-      <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "Sign up", new_user_registration_path %></p>
+      <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "ログイン", new_user_session_path %></p>
+      <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "新規登録", new_user_registration_path %></p>
     </div>
     <% end %>
   </nav>

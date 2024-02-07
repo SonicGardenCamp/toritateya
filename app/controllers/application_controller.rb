@@ -4,10 +4,20 @@ class ApplicationController < ActionController::Base
 
   private
   
+  def calcurateApprovalBalance(loan)
+    balance = loan.amount
+    loan.repayments.each do |repayment|
+      if repayment.approval_status == 1
+        balance -= repayment.amount
+      end
+    end
+    return balance
+  end
+  
   def calcurateBalance(loan)
     balance = loan.amount
     loan.repayments.each do |repayment|
-      balance -= repayment.amount
+        balance -= repayment.amount
     end
     return balance
   end

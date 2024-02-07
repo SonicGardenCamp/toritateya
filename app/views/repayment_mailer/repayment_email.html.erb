@@ -1,3 +1,15 @@
-<h1><%= @repayment.loan.lend_user.name %>様、example.comへようこそ。</h1>
-
+<h1><%= @borrow.lend_user.name %>様、返済内容をご確認し、同意の上承認ボタンを押してください</h1>
+  <div>
+    <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600">返済内容</h1>
+  </div>
+  <div class="w-5/12 mx-auto flex-col justify-center bg-white rounded-xl border border-2 border-emerald-600 bg-neutral-100">
+          <div class="">返済者 <%= @borrow.borrow_user.name %></div>
+          <div class="">借入金額:<%= @borrow.amount %>円</div>
+          <div class="">返済残高: <%= @repaymentBalance %>円</div>
+          <div class="">コメント: <%= @borrow.comment %></div>
+          <div class="">返却期限: <%= l @borrow.return_on %></div>
+  </div>
+  <div>
+    <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600">返済金額: <%= @repayment.amount %>円</h1>
+  </div>
 <%= link_to "承認する", repayment_approval_url(@repayment) %>
