@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root to: 'top_page#top'
+  devise_for :users
+  resources :borrows do
+    resources :repayments, only: [:new, :create, :edit, :update, :destroy]
+  end
+  resources :lends
+  get "lends/approval/:id", to: "lends#approval", as: "lend_approval"
+  get "repayments/approval/:id", to: "repayments#approval", as: "repayment_approval"
 end
