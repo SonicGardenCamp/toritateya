@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
   resources :lends
   get "lends/approval/:id", to: "lends#approval", as: "lend_approval"
+  get "repayments/approval/:id", to: "repayments#approval", as: "repayment_approval"
 end
