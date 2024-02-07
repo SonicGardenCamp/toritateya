@@ -9,6 +9,7 @@ class RepaymentsController < ApplicationController
 
   def create
     @borrow = Loan.find(params[:borrow_id])
+    user = User.find(@borrow.lend_user)
     @repaymentBalance = calcurateBalance(@borrow)
     @repayment = @borrow.repayments.new(repayment_params)
     if @repaymentBalance < repayment_params[:amount].to_i
@@ -16,7 +17,8 @@ class RepaymentsController < ApplicationController
       logger.debug(flash[:error])
        render :new, status: :unprocessable_entity
     elsif @repayment.save
-      redirect_to borrow_path(@borrow), notice: '返済が成功しました。'
+      RepaymentMailer.with(user: user, repayment: @repayment).repayment_email.deliver_later
+      redirect_to borrow_path(@borrow), notice: '返済を申請しました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,6 +50,15 @@ class RepaymentsController < ApplicationController
     @repayment = @borrow.repayments.find(params[:id])
     @repayment.destroy
     redirect_to borrow_path(@borrow)
+  end
+
+  def approval
+    @repayment = Repayment.find(params[:id])
+    if @repayment.update(approval_status: 1)
+      logger.debug("if文の中に入りました")
+      flash[:success] = "承認しました"
+      redirect_to root_path
+    end
   end
 
   private
