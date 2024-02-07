@@ -1,8 +1,9 @@
 <header class="bg-teal-400">
   <nav class="mx-auto flex max-w-7xl items-center justify-center p-6 lg:px-8">
-    <div class="flex lg:flex-1">
-      <p class="text-xl font-semibold leading-6 text-emerald-900"><%= link_to "Toritateya", root_path %></p>
-    </div>
+    <div class="flex lg:flex-1 items-center">
+    <%= link_to image_tag("logo.png", alt: "猫ロゴ", width: "100", height: "100"), root_path %>
+    <p class="text-xl font-semibold leading-6 text-emerald-900 ml-4"><%= link_to "Toritateya", root_path %></p>
+ </div>
     <% if user_signed_in? %>
     <div class="flex lg:gap-x-12">
         <p class="text-sm font-semibold leading-6 text-gray-900"><%= link_to "貸し一覧", lends_path %></p>
