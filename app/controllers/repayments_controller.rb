@@ -17,7 +17,7 @@ class RepaymentsController < ApplicationController
       logger.debug(flash[:error])
        render :new, status: :unprocessable_entity
     elsif @repayment.save
-      RepaymentMailer.with(user: user, repayment: @repayment).repayment_email.deliver_later
+      RepaymentMailer.with(user: user, borrow: @borrow, repayment: @repayment, repaymentBalance: @repaymentBalance).repayment_email.deliver_later
       redirect_to borrow_path(@borrow), notice: '返済を申請しました。'
     else
       render :new, status: :unprocessable_entity
