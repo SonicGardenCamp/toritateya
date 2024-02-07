@@ -38,3 +38,5 @@
 Gemfile.lock
 
 /.idea
+
+/.env
