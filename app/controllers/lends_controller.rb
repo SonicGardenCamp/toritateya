@@ -19,7 +19,7 @@ class LendsController < ApplicationController
     user = User.find_by(email: params[:loan][:email])
     if user 
       logger.debug("if文の中に入りました")
-      @loan = Loan.new(lend_user: current_user, borrow_user: user, amount: params[:loan][:amount], comment: params[:loan][:comment], return_on: params[:loan][:return_on])
+      @loan = Loan.new(lend_user: current_user, borrow_user: user, amount: params[:loan][:amount], comment: params[:loan][:comment], limit_on: params[:loan][:limit_on])
       logger.debug(@loan.inspect)
       if @loan.save
         logger.debug("保存処理実行")
