@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'top_page#top'
+  root 'top_page#index'
   devise_for :users
   resources :borrows do
-    resources :repayments, only: [:new, :create, :edit, :update, :destroy]
+    resources :repayments, only: %[new create edit update destroy]
   end
   resources :lends
   get "lends/approval/:id", to: "lends#approval", as: "lend_approval"
