@@ -14,7 +14,6 @@ class RepaymentsController < ApplicationController
     @repayment = @borrow.repayments.new(repayment_params)
     if @repaymentBalance < repayment_params[:amount].to_i
       flash.now[:error] = '返却額が返却残高を超えています'
-      logger.debug(flash[:error])
        render :new, status: :unprocessable_entity
     elsif @repayment.save
       RepaymentMailer.with(user: user, borrow: @borrow, repayment: @repayment, repaymentBalance: @repaymentBalance).repayment_email.deliver_later
@@ -36,7 +35,6 @@ class RepaymentsController < ApplicationController
     @repaymentBalance = calcurateBalance(@borrow) + @repayment.amount
     if @repaymentBalance < repayment_params[:amount].to_i
       flash.now[:error] = '返却額が返却残高を超えています'
-      logger.debug(flash[:error])
        render :edit, status: :unprocessable_entity
     elsif  @repayment.update(repayment_params)
       redirect_to borrow_path(@borrow), notice: '返済履歴の編集に成功しました。'
@@ -55,7 +53,6 @@ class RepaymentsController < ApplicationController
   def approval
     @repayment = Repayment.find(params[:id])
     if @repayment.update(approval_status: 1)
-      logger.debug("if文の中に入りました")
       flash[:success] = "承認しました"
       redirect_to root_path
     end
