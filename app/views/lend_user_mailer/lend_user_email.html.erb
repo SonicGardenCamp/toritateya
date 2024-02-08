@@ -1,7 +1,7 @@
 <h1><%= @loan.lend_user.name %>様、返済内容をご確認し、同意の上承認ボタンを押してください</h1>
     <div class="w-5/12 mx-auto flex-col justify-center bg-white rounded-xl border border-2 border-emerald-600 bg-neutral-100">
       <div class="">返済金額:<%= @loan.amount %>円</div>
-      <div class="">コメント: <%= @lend.comment %></div>
-      <div class="">返却期限: <%= l @lend.return_on %></div>
+      <div class="">コメント: <%= @loan.comment %></div>
+      <div class="">返却期限: <%= l @loan.limit_on %></div>
     </div>
 <%= link_to "承認する", lend_approval_url(@loan) %>

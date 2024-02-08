@@ -39,18 +39,18 @@
           </div>
           <div>
               <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-2 rounded-full">返却期限</span>
-              <span class="mx-1"><%= l @borrow.return_on %></span>
+              <span class="mx-1"><%= l @borrow.limit_on %></span>
           </div>
         </div>
         <div class="relative group">
           <% img = "cat.png" %>
           <% alt = "かわいい猫" %>
           <% imgComment = "返してにゃ~" %>
-          <% if @borrow.overdue? &&  @repaymentApprovalBalance != 0 %>
+          <% if @borrow.expired? &&  @repaymentApprovalBalance != 0 %>
             <% img = "tiger.png" %>
             <% alt = "怖いトラ" %>
             <% imgComment = "嚙み殺すぞ" %>
-          <% elsif @borrow.due_within_three_days? && @repaymentApprovalBalance != 0 %>
+          <% elsif @borrow.is_warning_days? && @repaymentApprovalBalance != 0 %>
             <% img = "catToritate.png" %>
             <% alt = "取り立て猫" %>
             <% imgComment = "まだかにゃ？" %>

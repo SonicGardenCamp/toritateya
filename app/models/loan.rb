@@ -1,17 +1,23 @@
 class Loan < ApplicationRecord
+  extend Enumerize
   belongs_to :lend_user, class_name: "User"
   belongs_to :borrow_user, class_name: "User"
   has_many :repayments, dependent: :destroy
 
-  validates :amount, presence: true, length: { maximum: 7 }
-  validates :return_on, presence: true
+  validates :amount, presence: true, length: { maximum: 10 }, numericality: { only_integer: true }
+  validates :limit_on, presence: true
+  enumerize :approval_status, in: [0,1], default: 0
 
-  def overdue?
-    return_on < Date.today
+  WARNING_DAY = 3
+
+  
+
+  def expired?
+    limit_on < Date.today
   end
 
-  def due_within_three_days?
-   (return_on - Date.today).to_i < 3
+  def is_warning_days?
+   limit_on <= Date.today + WARNING_DAY
   end
  
 end
