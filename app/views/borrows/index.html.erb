@@ -39,7 +39,7 @@
                 </div>
              </div>
               <div class="relative group">
-                <% if borrowInfo["borrow"].overdue? &&  borrowInfo["balance"] != 0 %>
+                <% if borrowInfo["borrow"].expired? &&  borrowInfo["balance"] != 0 %>
                     <span class="rounded bg-black px-2 py-1 text-white absolute -top-2 left-5 before:absolute before:left-5 before:top-full before:border-4 before:border-transparent before:border-t-black opacity-0 group-hover:opacity-100 transition pointer-events-none">
                         噛み殺すぞ
                     </span>

@@ -6,7 +6,7 @@ class Loan < ApplicationRecord
   validates :amount, presence: true, length: { maximum: 10 }
   validates :limit_on, presence: true
 
-  def overdue?
+  def expired?
     limit_on < Date.today
   end
 

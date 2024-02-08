@@ -46,7 +46,7 @@
           <% img = "cat.png" %>
           <% alt = "かわいい猫" %>
           <% imgComment = "返してにゃ~" %>
-          <% if @borrow.overdue? &&  @repaymentApprovalBalance != 0 %>
+          <% if @borrow.expired? &&  @repaymentApprovalBalance != 0 %>
             <% img = "tiger.png" %>
             <% alt = "怖いトラ" %>
             <% imgComment = "嚙み殺すぞ" %>
