@@ -10,6 +10,8 @@ class Loan < ApplicationRecord
 
   WARNING_DAY = 3
 
+  
+
   def expired?
     limit_on < Date.today
   end
