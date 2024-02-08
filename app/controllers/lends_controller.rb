@@ -12,25 +12,22 @@ class LendsController < ApplicationController
   end
 
   def new
-    @loan = Loan.new
+    @loan = current_user.lent_loans.build
   end
 
   def create
-    user = User.find_by(email: params[:loan][:email])
-    if user 
-      logger.debug("if文の中に入りました")
-      @loan = Loan.new(lend_user: current_user, borrow_user: user, amount: params[:loan][:amount], comment: params[:loan][:comment], return_on: params[:loan][:return_on])
-      logger.debug(@loan.inspect)
+    borrow_user = User.find_by(email: params[:loan][:email])
+    if borrow_user
+      @loan = current_user.lent_loans.build(loan_params)
+      @loan.borrow_user_id = borrow_user.id
       if @loan.save
-        logger.debug("保存処理実行")
-        logger.debug(@loan.inspect)
-        LendUserMailer.with(user: user, loan: @loan).lend_user_email.deliver_later
+        LendUserMailer.with(loan: @loan).lend_user_email.deliver_later
         redirect_to lends_path
       else
         render 'new', status: :unprocessable_entity
       end
     else
-      logger.debug("else文の中に入りました")
+      flash.now[:error] = 'ユーザーがいません'
       render 'new', status: :unprocessable_entity
     end
   end
@@ -48,7 +45,6 @@ class LendsController < ApplicationController
   def approval
     @loan = Loan.find(params[:id])
     if @loan.update(approval_status: 1)
-      logger.debug("if文の中に入りました")
       flash[:success] = "承認しました"
       redirect_to root_path
 
@@ -59,5 +55,11 @@ class LendsController < ApplicationController
     Loan.find(params[:id]).destroy
     flash[:success] = "削除しました"
     redirect_to lends_path, status: :see_other
+  end
+
+  private 
+  
+  def loan_params
+    params.require(:loan).permit(:amount, :comment, :limit_on)
   end
 end

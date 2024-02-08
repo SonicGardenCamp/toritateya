@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_06_012603) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_08_005436) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_06_012603) do
     t.bigint "borrow_user_id", null: false
     t.integer "amount", null: false
     t.string "comment", default: ""
-    t.date "return_on", null: false
+    t.date "limit_on", null: false
     t.integer "approval_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

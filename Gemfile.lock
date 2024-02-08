@@ -103,6 +103,8 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    enumerize (2.7.0)
+      activesupport (>= 3.2)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -261,6 +263,7 @@ DEPENDENCIES
   dockerfile-rails (>= 1.6)
   dotenv
   dotenv-rails
+  enumerize
   importmap-rails
   jbuilder
   pg (~> 1.1)
