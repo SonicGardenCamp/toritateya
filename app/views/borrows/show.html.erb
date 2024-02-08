@@ -8,10 +8,10 @@
   <div>
     <h1 class="text-center mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 dark:text-white">返済詳細</h1>
   </div>
-  <div class="w-11/12 mx-auto grid grid-cols-2 gap-3">
-    <div class="">
+  <div class="w-11/12 mx-auto grid grid-cols-2 gap-2">
+    <div>
       <div>
-        <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600">返済内容</h1>
+        <h1 class="text-center mr-32 mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600">返済内容</h1>
       </div>
       <div class="w-10/12 bg-white rounded-xl border border-2 border-emerald-600 grid grid-cols-2">
         <div class="grid mt-2">
@@ -45,7 +45,7 @@
         <div class="relative group">
           <% img = "cat.png" %>
           <% alt = "かわいい猫" %>
-          <% imgComment = "返してにゃ~" %>
+          <% imgComment = "にゃ~" %>
           <% if @borrow.expired? &&  @repaymentApprovalBalance != 0 %>
             <% img = "tiger.png" %>
             <% alt = "怖いトラ" %>
@@ -62,7 +62,7 @@
        </div>
       </div>
     </div>
-    <div class="">
+    <div>
       <div>
       <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600 dark:text-white">返済履歴 <%= @borrow.repayments.count %>件</h1>
       </div>
