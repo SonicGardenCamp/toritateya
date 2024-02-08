@@ -1,7 +1,7 @@
 <div class="flex flex-col w-full">
     <% if !@borrowInfos.empty? %>
     <div>
-        <h1 class="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">借り一覧 <%= @borrowInfos.count %>件</h1>
+        <h1 class="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">借り一覧</h1>
     </div>
     <div class="bg-neutral-100 w-full mx-auto rounded-xl grid grid-cols-3 gap-5 p-7">
         <% @borrowInfos.each do |borrowInfo| %>

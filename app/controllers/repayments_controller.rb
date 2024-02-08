@@ -9,14 +9,13 @@ class RepaymentsController < ApplicationController
 
   def create
     @borrow = Loan.find(params[:borrow_id])
-    user = User.find(@borrow.lend_user.id)
     @repaymentBalance = calcurateBalance(@borrow)
     @repayment = @borrow.repayments.new(repayment_params)
     if @repaymentBalance < repayment_params[:amount].to_i
       flash.now[:error] = '返却額が返却残高を超えています'
        render :new, status: :unprocessable_entity
     elsif @repayment.save
-      RepaymentMailer.with(user: user, borrow: @borrow, repayment: @repayment, repaymentBalance: @repaymentBalance).repayment_email.deliver_later
+      RepaymentMailer.with(borrow: @borrow, repayment: @repayment, repaymentBalance: @repaymentBalance).repayment_email.deliver_later
       redirect_to borrow_path(@borrow), notice: '返済を申請しました。'
     else
       render :new, status: :unprocessable_entity
