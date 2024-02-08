@@ -1,7 +1,7 @@
 <div class="flex flex-col w-full">
     <% if !@borrowInfos.empty? %>
     <div>
-        <h1 class="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">借り一覧</h1>
+        <h1 style="color:#022540" class="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">借り一覧</h1>
     </div>
     <div class="bg-neutral-100 w-full mx-auto rounded-xl grid grid-cols-3 gap-5 p-7">
         <% @borrowInfos.each do |borrowInfo| %>
@@ -9,16 +9,16 @@
          <div class="bg-white shadow-xl border border-black rounded-xl grid grid-cols-2">
              <div class="grid gap-y-3 mt-2">
                 <div>
-                    <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-3.5 rounded-full">返済者</span>
+                    <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-3.5 rounded-full">返済者</span>
                     <span class="mx-1"><%= borrowInfo["borrow"].lend_user.name %></span>
                 </div>
                 <div>
-                    <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-2 rounded-full">借入金額</span>
+                    <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-2 rounded-full">借入金額</span>
                     <span class="mx-1"><%= borrowInfo["borrow"].amount %>円</span>
                 </div>
                 <% if borrowInfo["balance"] > 0 %>
                 <div>
-                    <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-2 rounded-full">返済残高</span>
+                    <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-2 rounded-full">返済残高</span>
                     <span class="mx-1"><%= borrowInfo["balance"] %>円</span>
                 </div>
                 <% else %>
@@ -27,15 +27,15 @@
                 </div>
                 <% end %>
                 <div>
-                    <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-3.5 rounded-full">コメント</span>
+                    <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-3.5 rounded-full">コメント</span>
                     <span class="mx-1"><%= borrowInfo["borrow"].comment %></span>
                 </div>
                 <div>
-                    <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-2 rounded-full">返却期限</span>
+                    <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-2 rounded-full">返却期限</span>
                     <span class="mx-1"><%= l borrowInfo["borrow"].limit_on %></span>
                 </div>
                 <div class="mb-2">
-                    <%= link_to '詳細', borrow_path(borrowInfo["borrow"]), class: "text-center bg-teal-300 hover:bg-teal-400 text-white ml-32 py-1 px-2 rounded-full w-3/12" %>
+                    <%= link_to '詳細', borrow_path(borrowInfo["borrow"]), class: "text-center bg-teal-200 hover:bg-teal-400 ml-32 py-1 px-2 rounded-full w-3/12" %>
                 </div>
              </div>
               <div class="relative group">
