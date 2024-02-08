@@ -1,28 +1,25 @@
 <div class="flex flex-col w-full">
   <div class="flex justify-between">
-      <p class="text-sm font-semibold leading-6 text-gray-900"><span aria-hidden="true">&larr;</span><%= link_to "貸し一覧へ", lends_path %></p>
-  </div>
-  <div>
-    <h1 class="text-center mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 dark:text-white">貸付詳細</h1>
+      <p style="color:#022540" class="text-sm font-semibold leading-6 text-gray-900"><span aria-hidden="true">&larr;</span><%= link_to "貸し一覧へ", lends_path %></p>
   </div>
   <div class="w-11/12 mx-auto grid grid-cols-2 gap-2">
     <div>
       <div>
-        <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600">貸付内容</h1>
+        <h1 style="color:#022540" class="text-center mb-4 text-2xl font-bold leading-none tracking-tight">貸付内容</h1>
       </div>
-      <div class="w-7/12 mx-auto bg-white rounded-xl border border-2 border-emerald-600">
+      <div class="w-7/12 mx-auto bg-white rounded-xl border border-black">
         <div class="grid my-2 gap-2">
               <div>
-                <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-3.5 rounded-full">借入者</span>
+                <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-3.5 rounded-full">借入者</span>
                 <span class="mx-1"><%= @lend.borrow_user.name %></span>
               </div>
               <div>
-                <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-2 rounded-full">貸付金額</span>
+                <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-2 rounded-full">貸付金額</span>
                 <span class="mx-1"><%= @lend.amount %>円</span>
               </div>
               <% if @repaymentApprovalBalance > 0 %>
               <div>
-                <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-2 rounded-full">返済残高</span>
+                <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-2 rounded-full">返済残高</span>
                 <span class="mx-1"><%= @repaymentApprovalBalance %>円</span>
               </div>
               <% else %>
@@ -31,11 +28,11 @@
               </div>
               <% end %>
               <div>
-                <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-3.5 rounded-full">コメント</span>
+                <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-3.5 rounded-full">コメント</span>
                 <span class="mx-1"><%= @lend.comment %></span>
                 </div>
               <div>
-                <span class="bg-blue-500 text-white text-center text-xs mx-2.5 py-1 px-2 rounded-full">返却期限</span>
+                <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-2 rounded-full">返却期限</span>
                 <span class="mx-1"><%= l @lend.limit_on %></span>
               </div>
         </div>
@@ -43,10 +40,10 @@
     </div>
     <div>
       <div>
-      <h1 class="text-center mb-4 text-2xl font-bold leading-none tracking-tight text-emerald-600 dark:text-white">返済履歴 <%= @lend.repayments.count %>件</h1>
+      <h1 style="color:#022540" class="text-center mb-4 text-2xl font-bold leading-none tracking-tight">返済履歴 <%= @lend.repayments.count %>件</h1>
       </div>
       <% if !@lend.nil? %>
-      <div class="border border-2 border-emerald-600 bg-neutral-100 w-full mx-auto rounded-xl grid gap-y-3 p-7">
+      <div class="border border-black bg-neutral-100 w-full mx-auto rounded-xl grid gap-y-3 p-7">
           <% @repayments.each do |repayment| %>
             <% if repayment.approval_status == 1 %>
             <div class="bg-white rounded-xl border">
