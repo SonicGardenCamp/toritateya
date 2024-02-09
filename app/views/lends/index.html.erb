@@ -10,7 +10,7 @@
             <% @lendInfos.each do |lendInfo| %>
             <div class="bg-white rounded-xl border shadow-xl border-black ">
                 <div class="grid gap-y-3 mt-2">
-                    <div class="flex grid gap-x-2">
+                    <div class="flex gap-x-2">
                         <div>
                             <span class="bg-yellow-400 text-center text-xs mx-2.5 py-1 px-3.5 rounded-full">借入者</span>
                             <span class="mx-1"><%= lendInfo["lend"].borrow_user.name %></span>
@@ -34,7 +34,7 @@
                     </div>
                     <% else %>
                     <div>
-                        <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">返済完了</span>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium mx-2.5 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">返済完了</span>
                     </div>
                     <% end %>
                     <div>

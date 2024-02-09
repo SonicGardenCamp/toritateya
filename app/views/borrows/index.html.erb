@@ -23,7 +23,7 @@
                 </div>
                 <% else %>
                 <div>
-                  <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">返済完了</span>
+                  <span class="bg-green-100 text-green-800 text-xs font-medium mx-2.5 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">返済完了</span>
                 </div>
                 <% end %>
                 <div>
@@ -43,17 +43,17 @@
                     <span class="rounded bg-black px-2 py-1 text-white absolute -top-2 left-5 before:absolute before:left-5 before:top-full before:border-4 before:border-transparent before:border-t-black opacity-0 group-hover:opacity-100 transition pointer-events-none">
                         噛み殺すぞ
                     </span>
-                   <%= image_tag "tiger.png", alt: "怖いトラ",class: "w-11/12 rounded-full object-contain mt-5" %>
+                   <%= image_tag "tiger.png", alt: "怖いトラ",class: "w-11/12 rounded-full object-contain mt-5 mb-5" %>
                 <% elsif borrowInfo["borrow"].is_warning_days? && borrowInfo["balance"] != 0 %>
                     <span class="rounded bg-black px-2 py-1 text-white absolute -top-2 left-5 before:absolute before:left-5 before:top-full before:border-4 before:border-transparent before:border-t-black opacity-0 group-hover:opacity-100 transition pointer-events-none">
                         まだかにゃ？
                     </span>
-                   <%= image_tag "catToritate.png", alt: "取り立て猫", class: "w-11/12 rounded-full object-contain mt-5" %>
+                   <%= image_tag "catToritate.png", alt: "取り立て猫", class: "w-11/12 rounded-full object-contain mt-5 mb-5" %>
                 <% else %>
                     <span class="rounded bg-black px-2 py-1 text-white absolute -top-2 left-5 before:absolute before:left-5 before:top-full before:border-4 before:border-transparent before:border-t-black opacity-0 group-hover:opacity-100 transition pointer-events-none">
                         にゃ~
                     </span>
-                    <%= image_tag "cat.png", alt: "かわいい猫", class: "w-11/12 rounded-full object-contain mt-5" %>
+                    <%= image_tag "cat.png", alt: "かわいい猫", class: "w-11/12 rounded-full object-contain mt-5 mb-5" %>
                 <% end %>
              </div>
          </div>
